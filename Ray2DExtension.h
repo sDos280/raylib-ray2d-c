@@ -96,7 +96,7 @@ Ray2DCollision GetRay2DCollisionCircle(Ray2D ray, Vector2 center, float radius)
 
     float d = Vector2Length(u2);
 
-    collision.hit = d <= radius && (temp > 0.0f or u.x * u.x + u.y * u.y < radius * radius);
+    collision.hit = d <= radius && (temp > 0.0f || u.x * u.x + u.y * u.y < radius * radius);
 
     float m = sqrtf(radius * radius - d * d);
 
