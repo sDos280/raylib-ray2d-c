@@ -90,12 +90,13 @@ Ray2DCollision GetRay2DCollisionCircle(Ray2D ray, Vector2 center, float radius)
     Ray2DCollision collision = { 0 };
 
     Vector2 u = Vector2Subtract(center, ray.position);
-    Vector2 u1 = Vector2Scale(ray.direction, Vector2DotProduct(u, ray.direction));
+    float temp = Vector2DotProduct(u, ray.direction);
+    Vector2 u1 = Vector2Scale(ray.direction, temp);
     Vector2 u2 = Vector2Subtract(u, u1);
 
     float d = Vector2Length(u2);
 
-    collision.hit = d <= radius;
+    collision.hit = d <= radius && (temp > 0.0f or u.x * u.x + u.y * u.y < radius * radius);
 
     float m = sqrtf(radius * radius - d * d);
 
